@@ -1,0 +1,13 @@
+.week {
+  width: 100%;
+}
+
+.day {
+  width: 12%;
+}
+
+.week .day {
+  display: inline-block;
+  text-align: center;
+  margin: 5px
+}
