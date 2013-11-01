@@ -2,17 +2,17 @@ var today = new Date()
 var dateRecord = today.clone()
 
 function display(date) {
+  displayWeek(dateRecord.getDay())
+
   var weekArray = date.clone().toWeekDays()
-
   var weekString = "<div class='week'>"
-
   for (var day in weekArray) {
     weekString += "<div class='day' id='" + day + "' onClick='calDistance()'>" + weekArray[day].toString("ddd") + "<br>" + weekArray[day].toString("d") + "</div>"
   }
+
   weekString += "</div>"
 
   displayMonthAndYear()
-
   document.getElementById("calendar").innerHTML = weekString
 }
 
@@ -32,8 +32,12 @@ function displayMonthAndYear() {
   document.getElementById("monthAndYear").innerHTML = dateRecord.toString("MMMM") + " " + dateRecord.toString("yyyy")
 }
 
-function calDistance() {
-  var currentID = window.event.srcElement.id
+function displayWeek(currentID) {
   var weekArray = dateRecord.toWeekDays()
   document.getElementById("dateDistance").innerHTML = weekArray[currentID].toString("dddd")
+}
+
+function calDistance() {
+  var currentID = window.event.srcElement.id
+  displayWeek(currentID);
 }
