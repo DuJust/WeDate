@@ -2,12 +2,12 @@ var today = new Date()
 var dateRecord = today.clone()
 
 function display(date) {
-  displayWeek(dateRecord.getDay())
+  displayWeekday(dateRecord.getDay())
 
   var weekArray = date.clone().toWeekDays()
   var weekString = "<div class='week'>"
   for (var day in weekArray) {
-    weekString += "<div class='day' id='" + day + "' onClick='calDistance()'>" + weekArray[day].toString("ddd") + "<br>" + weekArray[day].toString("d") + "</div>"
+    weekString += "<div class='day' id='" + day + "' onClick='dateDistance()'>" + weekArray[day].toString("ddd") + "<br>" + weekArray[day].toString("d") + "</div>"
   }
 
   weekString += "</div>"
@@ -29,15 +29,17 @@ function displayThisWeek() {
 }
 
 function displayMonthAndYear() {
-  document.getElementById("monthAndYear").innerHTML = dateRecord.toString("MMMM") + " " + dateRecord.toString("yyyy")
+  var monthAndYear = "<div class='monthAndYear'>" + dateRecord.toString("MMMM") + " " + dateRecord.toString("yyyy") + "</div>"
+  document.getElementById("monthAndYear").innerHTML = monthAndYear
 }
 
-function displayWeek(currentID) {
+function displayWeekday(id) {
   var weekArray = dateRecord.toWeekDays()
-  document.getElementById("dateDistance").innerHTML = weekArray[currentID].toString("dddd")
+  var weekdayString = "<div class='weekday'>" + weekArray[id].toString("dddd") + "</div>"
+  document.getElementById("dateDistance").innerHTML = weekdayString
 }
 
-function calDistance() {
+function dateDistance() {
   var currentID = window.event.srcElement.id
-  displayWeek(currentID);
+  displayWeekday(currentID);
 }

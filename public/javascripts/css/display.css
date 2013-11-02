@@ -1,0 +1,21 @@
+.week .day {
+  display: inline-block;
+  text-align: center;
+  margin: 5px
+}
+
+.week {
+  width: 100%;
+}
+
+.day {
+  width: 13%;
+}
+
+.monthAndYear {
+  font-family: menlo;
+}
+
+.weekday {
+  font-family: menlo;
+}
