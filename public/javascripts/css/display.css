@@ -1,4 +1,4 @@
-.week .day {
+.week .date {
   display: inline-block;
   text-align: center;
   margin: 5px
@@ -8,14 +8,23 @@
   width: 100%;
 }
 
-.day {
-  width: 13%;
+.date {
+  width: 11%;
+  font-size: large;
+}
+
+.dateNumber {
+  font-size: xx-large;
 }
 
 .monthAndYear {
   font-family: menlo;
+  font-size: larger;
+  color: crimson;
 }
 
 .weekday {
   font-family: menlo;
+  color: crimson;
+  font-size: xx-large;
 }

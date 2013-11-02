@@ -7,7 +7,10 @@ function display(date) {
   var weekArray = date.clone().toWeekDays()
   var weekString = "<div class='week'>"
   for (var day in weekArray) {
-    weekString += "<div class='day' id='" + day + "' onClick='dateDistance()'>" + weekArray[day].toString("ddd") + "<br>" + weekArray[day].toString("d") + "</div>"
+    weekString += "<div class='date' id='" + day + "' onClick='dateDistance()'>"
+    weekString += "<div class='day'>" + weekArray[day].toString("ddd") + "</div>"
+    weekString += "<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>"
+    weekString += "</div>"
   }
 
   weekString += "</div>"
@@ -40,6 +43,6 @@ function displayWeekday(id) {
 }
 
 function dateDistance() {
-  var currentID = window.event.srcElement.id
+  var currentID = window.event.srcElement.parentElement.id
   displayWeekday(currentID);
 }
