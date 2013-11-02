@@ -43,6 +43,7 @@ function displayWeekdayColor(id) {
   }
   elements[id].style.color = 'crimson'
 }
+
 function displayWeekday(id) {
   var weekArray = dateRecord.toWeekDays()
   var weekdayString = "<div class='weekday'>" + weekArray[id].toString("dddd") + "</div>"
@@ -53,4 +54,6 @@ function displayWeekday(id) {
 function displayToday() {
   var element = window.event.srcElement.parentElement
   displayWeekday(element.id)
+  var weekArray = dateRecord.toWeekDays()
+  dateRecord = weekArray[element.id]
 }
