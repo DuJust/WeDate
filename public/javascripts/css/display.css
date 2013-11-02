@@ -1,6 +1,7 @@
 .week .date {
   display: inline-block;
   text-align: center;
+  color: darkgray;
   margin: 5px
 }
 

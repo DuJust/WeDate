@@ -11,6 +11,9 @@ Date.prototype.toWeekDays = function () {
 }
 
 Date.prototype.toNextWeekDays = function () {
-  var nextWeekday = this.clone().sunday()
-  return nextWeekday.toWeekDays()
+  return this.clone().add(7).days().toWeekDays()
+}
+
+Date.prototype.toPreviewWeekDays = function () {
+  return this.clone().add(-7).days().toWeekDays()
 }

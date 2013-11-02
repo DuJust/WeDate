@@ -2,29 +2,27 @@ var today = new Date()
 var dateRecord = today.clone()
 
 function display(date) {
-  displayWeekday(dateRecord.getDay())
-
   var weekArray = date.clone().toWeekDays()
-  var weekString = "<div class='week'>"
+  var weekString = "<div class='week' id='week'>"
   for (var day in weekArray) {
-    weekString += "<div class='date' id='" + day + "' onClick='dateDistance()'>"
+    weekString += "<div class='date' id='" + day + "' onClick='displayToday()'>"
     weekString += "<div class='day'>" + weekArray[day].toString("ddd") + "</div>"
     weekString += "<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>"
     weekString += "</div>"
   }
 
   weekString += "</div>"
-
-  displayMonthAndYear()
   document.getElementById("calendar").innerHTML = weekString
+  displayWeekday(dateRecord.getDay())
+  displayMonthAndYear()
 }
 
 function displayNextWeek() {
-  display(dateRecord.add(7).days())
+  display(dateRecord.toNextWeekDays())
 }
 
 function displayPreviousWeek() {
-  display(dateRecord.add(-7).days())
+  display(dateRecord.toPreviewWeekDays())
 }
 
 function displayThisWeek() {
@@ -36,13 +34,21 @@ function displayMonthAndYear() {
   document.getElementById("monthAndYear").innerHTML = monthAndYear
 }
 
+function displayWeekdayColor(id) {
+  var elements = document.getElementsByClassName('date')
+  for (var index = 0; index < elements.length; index++) {
+    elements[index].style.color = 'darkgray'
+  }
+  elements[id].style.color = 'crimson'
+}
 function displayWeekday(id) {
   var weekArray = dateRecord.toWeekDays()
   var weekdayString = "<div class='weekday'>" + weekArray[id].toString("dddd") + "</div>"
   document.getElementById("dateDistance").innerHTML = weekdayString
+  displayWeekdayColor(id);
 }
 
-function dateDistance() {
-  var currentID = window.event.srcElement.parentElement.id
-  displayWeekday(currentID);
+function displayToday() {
+  var element = window.event.srcElement.parentElement
+  displayWeekday(element.id)
 }
