@@ -18,11 +18,13 @@ function display(date) {
 }
 
 function displayNextWeek() {
-  display(dateRecord.toNextWeekDays())
+  dateRecord.toNextWeekDays()
+  display(dateRecord)
 }
 
 function displayPreviousWeek() {
-  display(dateRecord.toPreviewWeekDays())
+  dateRecord.toPreviewWeekDays()
+  display(dateRecord)
 }
 
 function displayThisWeek() {
