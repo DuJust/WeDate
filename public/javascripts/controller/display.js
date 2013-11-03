@@ -58,4 +58,9 @@ $(document).ready(function () {
     dateRecord.toPreviousWeekDays()
     display(dateRecord)
   })
+
+  $('.week').bind('swipeleft',function(){
+    dateRecord.toNextWeekDays()
+    display(dateRecord)
+  })
 })
