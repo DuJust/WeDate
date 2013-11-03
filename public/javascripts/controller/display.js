@@ -13,6 +13,16 @@ $(document).ready(function () {
     }
     $('.calendar').append(week)
 
+    $('.week').on('swipeleft',function(){
+      dateRecord.toNextWeekDays()
+      display(dateRecord)
+    })
+
+    $('.week').on('swiperight',function(){
+      dateRecord.toPreviousWeekDays()
+      display(dateRecord)
+    })
+
     $('.date').click(function () {
       var weekArray = dateRecord.toWeekDays()
       dateRecord = weekArray[this.id]
