@@ -13,12 +13,12 @@ $(document).ready(function () {
     }
     $('.calendar').append(week)
 
-    $('.week').on('swipeleft',function(){
+    $('.week').on('swipeleft', function () {
       dateRecord.toNextWeekDays()
       display(dateRecord)
     })
 
-    $('.week').on('swiperight',function(){
+    $('.week').on('swiperight', function () {
       dateRecord.toPreviousWeekDays()
       display(dateRecord)
     })
@@ -40,8 +40,10 @@ $(document).ready(function () {
   display(dateRecord.clone())
 
   function displayWeekday(date) {
-    var week = $("<div class='weekday'>" + date.compare(today) + "</div>")
+    var week = $("<div class='weekday' style='display: none'>" + date.compare(today) + "</div>")
     $(".monthAndYear").after(week)
+
+    $('.weekday').fadeIn("slow")
     displayWeekdayColor(date.getDay());
   }
 
