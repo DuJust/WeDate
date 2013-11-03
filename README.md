@@ -1,6 +1,8 @@
 We Date
 ===========
 
-How to run test:
-  Use 'rake jasmine' and open browser, all test are in:
-    http://localhost:8888/
+# Run Test:
+Run
+    rake jasmine
+Open browser, all test are in:
+ * http://localhost:8888/
