@@ -34,15 +34,15 @@ $(document).ready(function () {
     $('.calendar').empty()
     displayMonthAndYear(date)
     displayDates(date);
-    displayWeekday(dateRecord.getDay())
+    displayWeekday(date)
   }
-  display(dateRecord)
 
-  function displayWeekday(id) {
-    var weekArray = dateRecord.toWeekDays()
-    var week = $("<div class='weekday'>" + weekArray[id].toString("dddd") + "</div>")
+  display(dateRecord.clone())
+
+  function displayWeekday(date) {
+    var week = $("<div class='weekday'>" + date.compare(today) + "</div>")
     $(".monthAndYear").after(week)
-    displayWeekdayColor(id);
+    displayWeekdayColor(date.getDay());
   }
 
   function displayWeekdayColor(id) {
@@ -54,22 +54,22 @@ $(document).ready(function () {
     var monthAndYear = $("<div class='monthAndYear'>" + date.toString("MMMM") + " " + date.toString("yyyy") + "</div>")
     $('.calendar').append(monthAndYear)
 
-    $('.monthAndYear').click(function(){
+    $('.monthAndYear').click(function () {
       display(dateRecord = today.clone())
     })
   }
 
-  $('.nextWeek').click(function(){
+  $('.nextWeek').click(function () {
     dateRecord.toNextWeekDays()
     display(dateRecord)
   })
 
-  $('.previousWeek').click(function(){
+  $('.previousWeek').click(function () {
     dateRecord.toPreviousWeekDays()
     display(dateRecord)
   })
 
-  $('.week').bind('swipeleft',function(){
+  $('.week').bind('swipeleft', function () {
     dateRecord.toNextWeekDays()
     display(dateRecord)
   })
