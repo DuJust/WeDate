@@ -59,18 +59,4 @@ $(document).ready(function () {
     })
   }
 
-  $('.nextWeek').click(function () {
-    dateRecord.toNextWeekDays()
-    display(dateRecord)
-  })
-
-  $('.previousWeek').click(function () {
-    dateRecord.toPreviousWeekDays()
-    display(dateRecord)
-  })
-
-  $('.week').bind('swipeleft', function () {
-    dateRecord.toNextWeekDays()
-    display(dateRecord)
-  })
 })
