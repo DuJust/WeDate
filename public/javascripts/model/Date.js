@@ -14,6 +14,6 @@ Date.prototype.toNextWeekDays = function () {
   return this.add(7).days().toWeekDays()
 }
 
-Date.prototype.toPreviewWeekDays = function () {
+Date.prototype.toPreviousWeekDays = function () {
   return this.add(-7).days().toWeekDays()
 }

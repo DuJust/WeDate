@@ -38,7 +38,7 @@ describe("We Date", function () {
       week.push(new Date(2013, 9, 27 - 14 + day));
     }
 
-    expect(date.toPreviewWeekDays()).toEqual(week)
+    expect(date.toPreviousWeekDays()).toEqual(week)
   })
 
 })

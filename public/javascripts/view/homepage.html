@@ -3,25 +3,21 @@
 <head>
   <title>day</title>
   <link rel="stylesheet" type="text/css" href="../css/display.css"/>
+  <script src="../lib/jquery-2.0.3.js"></script>
   <script src="../lib/date.js"></script>
   <script src="../model/Date.js"></script>
-  <script src="../model/display.js"></script>
+  <script src="../controller/display.js"></script>
+
 </head>
-<body onload="display(dateRecord)">
-<div id="monthAndYear">
+<body>
 
-</div>
+  <div class="monthAndYear"></div>
+  <div class="dateDistance"></div>
+  <div class="calendar"></div>
 
-<div id="dateDistance">
-
-</div>
-
-<div id="calendar">
-
-</div>
-<a href="#" onclick="displayPreviousWeek()">previous week</a>
-<a href="#" onclick="displayThisWeek()">today</a>
-<a href="#" onclick="displayNextWeek()">next week</a>
+  <a href="#" class="previousWeek">previous week</a>
+  <a href="#" class="thisWeek">today</a>
+  <a href="#" class="nextWeek">next week</a>
 
 </body>
 </html>
