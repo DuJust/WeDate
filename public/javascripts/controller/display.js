@@ -22,7 +22,7 @@ $(document).ready(function () {
 
   function display(date) {
     $('.calendar').empty()
-    displayMonthAndYear()
+    displayMonthAndYear(date)
     displayDates(date);
     displayWeekday(dateRecord.getDay())
   }
@@ -31,7 +31,7 @@ $(document).ready(function () {
   function displayWeekday(id) {
     var weekArray = dateRecord.toWeekDays()
     var week = $("<div class='weekday'>" + weekArray[id].toString("dddd") + "</div>")
-    $(".dateDistance").html(week)
+    $(".monthAndYear").after(week)
     displayWeekdayColor(id);
   }
 
@@ -40,14 +40,14 @@ $(document).ready(function () {
     $('#' + id).css('color', 'crimson')
   }
 
-  function displayMonthAndYear() {
-    var monthAndYear = $("<div class='monthAndYear'>" + dateRecord.toString("MMMM") + " " + dateRecord.toString("yyyy") + "</div>")
+  function displayMonthAndYear(date) {
+    var monthAndYear = $("<div class='monthAndYear'>" + date.toString("MMMM") + " " + date.toString("yyyy") + "</div>")
     $('.calendar').append(monthAndYear)
-  }
 
-  $('.thisWeek').click(function(){
-    display(dateRecord = today.clone())
-  })
+    $('.monthAndYear').click(function(){
+      display(dateRecord = today.clone())
+    })
+  }
 
   $('.nextWeek').click(function(){
     dateRecord.toNextWeekDays()
