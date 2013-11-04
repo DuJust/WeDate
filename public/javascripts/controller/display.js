@@ -11,22 +11,36 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
-    week.css('width',$(window).width())
+    week.css({'width': $(window).width(), 'display': 'inline-block', 'overflow': 'hidden'})
     return week
   }
 
+  function weekAnimate(date, forward) {
+    $('.weeks').animate({
+      left: forward * $(window).width(),
+      width: $(window).width() * 2,
+      height: $(this).height()
+    }, "fast", function () {
+      display(date)
+    })
+  }
+
   function displayDates(date) {
-    var week = createWeek(date)
-    $('.calendar').append(week)
+    var weeks = $("<div class='weeks'></div>").append(createWeek(date))
+    weeks.css({'width': $(window).width() * 2, 'position': 'relative'})
+    $('.calendar').append(weeks)
 
     $('.week').on('swipeleft', function () {
       date.toNextWeekDays()
-      display(date)
+      $(this).after(createWeek(date))
+      weekAnimate.call(this, date, -1)
     })
 
     $('.week').on('swiperight', function () {
       date.toPreviousWeekDays()
-      display(date)
+      $(this).before(createWeek(date))
+      $('.weeks').css({'left': -$(window).width()})
+      weekAnimate.call(this, date, +1)
     })
 
     $('.date').click(function () {
