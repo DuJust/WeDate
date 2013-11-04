@@ -2,7 +2,7 @@ $(document).ready(function () {
   var today = new Date()
   var dateRecord = today.clone()
 
-  function displayDates(date) {
+  function createWeek(date) {
     var weekArray = date.clone().toWeekDays()
     var week = $("<div class='week' id='week'></div>")
     for (var day in weekArray) {
@@ -11,22 +11,28 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
+    week.css('width',$(window).width())
+    return week
+  }
+
+  function displayDates(date) {
+    var week = createWeek(date)
     $('.calendar').append(week)
 
     $('.week').on('swipeleft', function () {
-      dateRecord.toNextWeekDays()
-      display(dateRecord)
+      date.toNextWeekDays()
+      display(date)
     })
 
     $('.week').on('swiperight', function () {
-      dateRecord.toPreviousWeekDays()
-      display(dateRecord)
+      date.toPreviousWeekDays()
+      display(date)
     })
 
     $('.date').click(function () {
-      var weekArray = dateRecord.toWeekDays()
-      dateRecord = weekArray[this.id]
-      display(dateRecord)
+      var weekArray = date.toWeekDays()
+      date = weekArray[this.id]
+      display(date)
     })
   }
 
