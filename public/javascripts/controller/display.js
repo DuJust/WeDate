@@ -2,6 +2,9 @@ $(document).ready(function () {
   var today = new Date()
   var dateRecord = today.clone()
 
+  var LEFT = 1
+  var RIGHT = -1
+
   function createWeek(date) {
     var weekArray = date.clone().toWeekDays()
     var week = $("<div class='week' id='week'></div>")
@@ -33,14 +36,14 @@ $(document).ready(function () {
     $('.week').on('swipeleft', function () {
       date.toNextWeekDays()
       $(this).after(createWeek(date))
-      weekAnimate.call(this, date, -1)
+      weekAnimate.call(this, date, RIGHT)
     })
 
     $('.week').on('swiperight', function () {
       date.toPreviousWeekDays()
       $(this).before(createWeek(date))
       $('.weeks').css({'left': -$(window).width()})
-      weekAnimate.call(this, date, +1)
+      weekAnimate.call(this, date, LEFT)
     })
 
     $('.date').click(function () {
