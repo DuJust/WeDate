@@ -22,7 +22,7 @@ $(document).ready(function () {
     $('.weeks').animate({
       left: forward * $(window).width(),
       width: $(window).width(),
-      height: $(this).height()
+      height: $('.weeks').height()
     }, "fast", function () {
       display(date)
     })
@@ -36,14 +36,14 @@ $(document).ready(function () {
     $('.week').on('swipeleft', function () {
       date.toNextWeekDays()
       $(this).after(createWeek(date))
-      weekAnimate.call(this, date, RIGHT)
+      weekAnimate(date, RIGHT)
     })
 
     $('.week').on('swiperight', function () {
       date.toPreviousWeekDays()
       $(this).before(createWeek(date))
       $('.weeks').css({'left': -$(window).width()})
-      weekAnimate.call(this, date, LEFT)
+      weekAnimate(date, LEFT)
     })
 
     $('.date').click(function () {
