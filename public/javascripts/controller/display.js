@@ -72,7 +72,6 @@ $(document).ready(function () {
   }
 
   function displayWeekdayColor(id) {
-    $('.date').css('color', 'darkgray')
     $('#' + id).css('color', 'crimson')
   }
 

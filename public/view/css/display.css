@@ -11,22 +11,20 @@
 }
 
 .date {
-  width: 11%;
-  font-size: large;
-}
-
-.dateNumber {
+  width: 13%;
   font-size: xx-large;
 }
 
+.dateNumber {
+  font-size: 200%;
+}
+
 .monthAndYear {
-  font-family: menlo;
-  font-size: larger;
   color: crimson;
+  font-size: x-large;
 }
 
 .weekday {
-  font-family: menlo;
   color: crimson;
   font-size: xx-large;
 }
