@@ -14,14 +14,14 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
-    week.css({'width': $(window).width(), 'display': 'inline-block', 'overflow': 'hidden'})
+    week.css({'width': $(window).width()})
     return week
   }
 
   function weekAnimate(date, forward) {
     $('.weeks').animate({
       left: forward * $(window).width(),
-      width: $(window).width() * 2,
+      width: $(window).width(),
       height: $(this).height()
     }, "fast", function () {
       display(date)
@@ -63,7 +63,8 @@ $(document).ready(function () {
   display(dateRecord.clone())
 
   function displayWeekday(date) {
-    var week = $("<div class='weekday' style='display: none'>" + date.compare(today) + "</div>")
+    var week = $("<div class='weekday'>" + date.compare(today) + "</div>")
+    week.css('display', 'none')
     $(".monthAndYear").after(week)
 
     $('.weekday').fadeIn("slow")

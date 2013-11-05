@@ -1,3 +1,8 @@
+.week {
+  display: inline-block;
+  overflow: hidden;
+}
+
 .week .date {
   display: inline-block;
   text-align: center;
