@@ -14,35 +14,36 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
-    week.css({'width': $(window).width()})
+    week.css({'width': $(window).width(),'display': 'none'})
     return week
   }
 
   function weekAnimate(date, forward) {
-    $('.weeks').animate({
-      left: forward * $(window).width(),
+    var week = $('.week')
+    week.marginLeft = forward * $(window).width()
+    week.animate({
+      marginLeft: forward * $(window).width(),
       width: $(window).width(),
-      height: $('.weeks').height()
+      height: week.height()
     }, "fast", function () {
       display(date)
     })
   }
 
   function displayDates(date) {
-    var weeks = $("<div class='weeks'></div>").append(createWeek(date))
-    weeks.css({'width': $(window).width() * 2, 'position': 'relative'})
-    $('.calendar').append(weeks)
+    $('.calendar').append(createWeek(date))
+    var week = $('.week')
+    week.css({'display' : 'block'})
 
-    $('.week').on('swipeleft', function () {
+    week.on('swipeleft', function () {
       date.toNextWeekDays()
       $(this).after(createWeek(date))
       weekAnimate(date, RIGHT)
     })
 
-    $('.week').on('swiperight', function () {
+    week.on('swiperight', function () {
       date.toPreviousWeekDays()
       $(this).before(createWeek(date))
-      $('.weeks').css({'left': -$(window).width()})
       weekAnimate(date, LEFT)
     })
 
