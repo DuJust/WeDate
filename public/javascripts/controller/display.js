@@ -14,7 +14,8 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
-    week.css({'width': $(window).width(),'display': 'none'})
+    week.after()
+    week.css({'display': 'none'})
     return week
   }
 
@@ -33,7 +34,12 @@ $(document).ready(function () {
   function displayDates(date) {
     $('.calendar').append(createWeek(date))
     var week = $('.week')
-    week.css({'display' : 'block'})
+    var navigate = $("<div class='navigate'> </div>")
+    navigate.append("<div class='arrow_frame' id='previous_week'> <div class='arrow_up'> </div> </div>")
+    navigate.append("<div class='arrow_frame' id='next_week'> <div class='arrow_down'> </div> </div>")
+    navigate.height(week.height())
+    week.show();
+    week.after(navigate)
 
     week.on('swipeleft', function () {
       date.toNextWeekDays()
@@ -47,6 +53,18 @@ $(document).ready(function () {
       weekAnimate(date, LEFT)
     })
 
+    $('#previous_week').click(function(){
+      date.toPreviousWeekDays()
+      $(this).before(createWeek(date))
+      weekAnimate(date, LEFT)
+    })
+
+    $('#next_week').click(function(){
+      date.toNextWeekDays()
+      $(this).after(createWeek(date))
+      weekAnimate(date, RIGHT)
+    })
+
     $('.date').click(function () {
       var weekArray = date.toWeekDays()
       date = weekArray[this.id]
@@ -55,9 +73,10 @@ $(document).ready(function () {
   }
 
   function display(date) {
-    $('.calendar').empty()
+    var calendar = $('.calendar')
+    calendar.empty()
     displayMonthAndYear(date)
-    displayDates(date);
+    displayDates(date)
     displayWeekday(date)
   }
 
