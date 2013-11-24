@@ -32,7 +32,8 @@ $(document).ready(function () {
   }
 
   function displayDates(date) {
-    $('.calendar').append(createWeek(date))
+    var calendar = $('.calendar');
+    calendar.append(createWeek(date))
     var week = $('.week')
     var navigate = $("<div class='navigate'> </div>")
     navigate.append("<div class='arrow_frame' id='previous_week'> <div class='arrow_up'> </div> </div>")
@@ -41,27 +42,27 @@ $(document).ready(function () {
     week.show();
     week.after(navigate)
 
-    week.on('swipeleft', function () {
+    week.hammer().on('dragleft', function () {
       date.toNextWeekDays()
-      $(this).after(createWeek(date))
+      week.after(createWeek(date))
       weekAnimate(date, RIGHT)
     })
 
-    week.on('swiperight', function () {
+    week.hammer().on('dragright', function () {
       date.toPreviousWeekDays()
-      $(this).before(createWeek(date))
+      week.before(createWeek(date))
       weekAnimate(date, LEFT)
     })
 
     $('#previous_week').click(function(){
       date.toPreviousWeekDays()
-      $(this).before(createWeek(date))
+      week.before(createWeek(date))
       weekAnimate(date, LEFT)
     })
 
     $('#next_week').click(function(){
       date.toNextWeekDays()
-      $(this).after(createWeek(date))
+      week.after(createWeek(date))
       weekAnimate(date, RIGHT)
     })
 
