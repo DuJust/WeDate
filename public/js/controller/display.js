@@ -14,9 +14,26 @@ $(document).ready(function () {
       date.append("<div class='dateNumber'>" + weekArray[day].toString("d") + "</div>")
       week.append(date)
     }
-    week.after()
-    week.css({'display': 'none'})
+    week.hide()
     return week
+  }
+
+  function createMonth(date) {
+    var monthArray = date.clone().toMonthWeeks()
+    var month = $("<div class='month' id='month'></div>")
+    for(var j in monthArray){
+      var week = $("<div class='week' id='week'></div>")
+      var weekArray = monthArray[j]
+      for (var i in weekArray) {
+        var day = $("<div class='date' id='" + (weekArray[i].getDate()-1) + "'></div>")
+        day.append("<div class='day'>" + weekArray[i].toString("ddd") + "</div>")
+        day.append("<div class='dateNumber'>" + weekArray[i].toString("d") + "</div>")
+        week.append(day)
+      }
+      month.append(week)
+    }
+    month.css({'display': 'none'})
+    return month
   }
 
   function weekAnimate(date, forward) {
@@ -24,7 +41,6 @@ $(document).ready(function () {
     week.marginLeft = forward * $(window).width()
     week.animate({
       marginLeft: forward * $(window).width(),
-      width: $(window).width(),
       height: week.height()
     }, "fast", function () {
       display(date)
@@ -54,13 +70,13 @@ $(document).ready(function () {
       weekAnimate(date, LEFT)
     })
 
-    $('#previous_week').click(function(){
+    $('#previous_week').click(function () {
       date.toPreviousWeekDays()
       week.before(createWeek(date))
       weekAnimate(date, LEFT)
     })
 
-    $('#next_week').click(function(){
+    $('#next_week').click(function () {
       date.toNextWeekDays()
       week.after(createWeek(date))
       weekAnimate(date, RIGHT)
@@ -81,15 +97,39 @@ $(document).ready(function () {
     displayWeekday(date)
   }
 
-  display(dateRecord.clone())
-
   function displayWeekday(date) {
-    var week = $("<div class='weekday'>" + date.compare(today) + "</div>")
-    week.css('display', 'none')
-    $(".monthAndYear").after(week)
-
-    $('.weekday').fadeIn("slow")
+    var weekday = $("<div class='weekday'>" + date.compare(today) + "</div>")
+    weekday.hide()
+    $(".monthAndYear").after(weekday)
+    weekday.fadeIn("slow")
     displayWeekdayColor(date.getDay());
+    weekday.click(function () {
+      displayMonth(dateRecord);
+    })
+  }
+
+  function displayMonth(date) {
+    display(date)
+    var week = $('.week')
+    var navigate = $('.navigate')
+    week.hide();
+    week.after(createMonth(date))
+    var month = $('.month');
+    month.height(0);
+    month.show();
+    month.animate({
+      height: week.height()*5
+    }, "fast", function () {
+      $('.date').click(function () {
+        var monthArray = date.toMonthDays()
+        date = monthArray[this.id]
+        month.animate({
+          height: week.height()
+        }, "fast" ,function(){
+          display(date)
+        })
+      })
+    })
   }
 
   function displayWeekdayColor(id) {
@@ -105,4 +145,5 @@ $(document).ready(function () {
     })
   }
 
+  display(dateRecord)
 })

@@ -23,6 +23,16 @@ describe("We Date", function () {
     expect(date.toWeekDays()).toEqual(week)
   })
 
+  it("when given a week should be return a list of weeks", function () {
+    date = new Date(2013, 10, 25).moveToFirstDayOfMonth().sunday()
+    var month = [date.toWeekDays()]
+    for (var week = 0; week < 4 ; week++) {
+      month.push(date.add(1).week().clone().toWeekDays())
+    }
+
+    expect(new Date(2013, 10, 25).toMonthWeeks()).toEqual(month)
+  })
+
   it("given a date when next week days should be return a list of dates", function () {
     var week = []
     for (var day = 0; day < 7; day++) {

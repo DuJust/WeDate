@@ -1,7 +1,11 @@
-.week {
-  width: 90%;
+.month {
+  width: 100%;
   float: left;
-  position: fixed;
+}
+
+.week {
+  width: 100%;
+  float: left;
 }
 
 .date {

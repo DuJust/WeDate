@@ -10,6 +10,26 @@ Date.prototype.toWeekDays = function () {
   return week
 }
 
+Date.prototype.toMonthDays = function () {
+  var monthday = this.clone().moveToFirstDayOfMonth()
+  var days = Date.getDaysInMonth(monthday.getYear(),monthday.getMonth())
+  var month = [monthday.clone()]
+  for (var day = 0; day < days-1 ; day++) {
+    month.push(monthday.add(1).days().clone())
+  }
+  return month
+}
+
+Date.prototype.toMonthWeeks = function () {
+  var monthday = this.clone().moveToFirstDayOfMonth().sunday()
+  var month = [monthday.clone().toWeekDays()]
+  for (var week = 0; week < 4 ; week++) {
+    month.push(monthday.add(1).week().clone().toWeekDays())
+  }
+  console.log(month)
+  return month
+}
+
 Date.prototype.toNextWeekDays = function () {
   return this.add(7).days().toWeekDays()
 }
