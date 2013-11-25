@@ -70,6 +70,10 @@ $(document).ready(function () {
       weekAnimate(date, LEFT)
     })
 
+    week.hammer().on('dragdown',function () {
+      displayMonth(dateRecord);
+    })
+
     $('#previous_week').click(function () {
       date.toPreviousWeekDays()
       week.before(createWeek(date))
@@ -103,9 +107,6 @@ $(document).ready(function () {
     $(".monthAndYear").after(weekday)
     weekday.fadeIn("slow")
     displayWeekdayColor(date.getDay());
-    weekday.click(function () {
-      displayMonth(dateRecord);
-    })
   }
 
   function displayMonth(date) {
