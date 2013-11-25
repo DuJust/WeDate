@@ -21,7 +21,10 @@ Date.prototype.toMonthDays = function () {
 }
 
 Date.prototype.toMonthWeeks = function () {
-  var monthday = this.clone().moveToFirstDayOfMonth().sunday()
+  var monthday = this.clone().moveToFirstDayOfMonth()
+  if (!monthday.is().sunday()) {
+    monthday.sunday().add(-7).days()
+  }
   var month = [monthday.clone().toWeekDays()]
   for (var week = 0; week < 4 ; week++) {
     month.push(monthday.add(1).week().clone().toWeekDays())

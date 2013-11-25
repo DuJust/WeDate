@@ -24,7 +24,7 @@ describe("We Date", function () {
   })
 
   it("when given a week should be return a list of weeks", function () {
-    date = new Date(2013, 10, 25).moveToFirstDayOfMonth().sunday()
+    date = new Date(2013, 10, 25).moveToFirstDayOfMonth().add(-7).sunday()
     var month = [date.toWeekDays()]
     for (var week = 0; week < 4 ; week++) {
       month.push(date.add(1).week().clone().toWeekDays())
