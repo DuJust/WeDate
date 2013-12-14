@@ -22,6 +22,7 @@
     "after": false,
     "afterEach": false,
     "angular": false,
+    "moment": false,
     "before": false,
     "beforeEach": false,
     "browser": false,
