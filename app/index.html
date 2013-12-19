@@ -26,11 +26,9 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container" ng-view="">
-    </div>
     <div ng-controller="MainCtrl">
-      <li ng-repeat="date in weMonth">{{date.format('LLLL')}}</li>
-      <li ng-repeat="date in weWeek">{{date.format('LLLL')}}</li>
+      <div class="container" ng-view="">
+      </div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->

@@ -8,7 +8,7 @@ describe 'Controller: MainCtrl', ->
       return
   it 'should attach a list of weDate to the scope', ->
     expect(@scope.weWeek.length).toBe 7
-    expect(@scope.weMonth.length).toBe 31
+    expect(@scope.weMonth.length).toBe @scope.weDate.daysInMonth()
     return
   it 'should add a week', ->
     monday = @scope.weWeek[0]
