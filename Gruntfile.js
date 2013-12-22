@@ -37,7 +37,7 @@ module.exports = function (grunt) {
       },
       coffee: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.coffee'],
-        tasks: ['coffeelint','coffee']
+        tasks: ['coffeelint','coffee','karma']
       },
       coffeeTest: {
         files: ['test/spec/{,*/}*.coffee'],
@@ -429,6 +429,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('test', [
     'clean:server',
+    'coffee',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
