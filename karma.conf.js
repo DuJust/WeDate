@@ -11,6 +11,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'app/bower_components/jquery/jquery.min.js',
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/bower_components/angular-resource/angular-resource.js',
@@ -18,11 +19,23 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/momentjs/moment.js',
+      '**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      '.tmp/**/*.js'
     ],
+
+    preprocessors: {
+      '**/*.coffee': 'coffee',
+      '**/*.html': 'ng-html2js'
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/views/',
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('foo')
+      moduleName: 'views'
+    },
 
     // list of files / patterns to exclude
     exclude: [],
@@ -47,7 +60,8 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+//    browsers: ['Firefox'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode

@@ -22,6 +22,7 @@
     "after": false,
     "afterEach": false,
     "angular": false,
+    "jQuery": false,
     "moment": false,
     "before": false,
     "beforeEach": false,
@@ -30,7 +31,7 @@
     "expect": false,
     "inject": false,
     "it": false,
-    "spyOn": false
+    "spyOn": true
   }
 }
 

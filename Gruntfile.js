@@ -29,15 +29,19 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'],
-        tasks: ['coffee','newer:jshint:all']
-      },
-      coffee: {
-        files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.coffee','test/spec/{,*/}*.coffee'],
-        tasks: ['coffee']
+        tasks: ['newer:jshint:all','karma']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
         tasks: ['newer:jshint:test', 'karma']
+      },
+      coffee: {
+        files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.coffee'],
+        tasks: ['coffeelint','coffee']
+      },
+      coffeeTest: {
+        files: ['test/spec/{,*/}*.coffee'],
+        tasks: ['coffeelint','coffee','karma']
       },
       compass: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
@@ -144,9 +148,6 @@ module.exports = function (grunt) {
       }
     },
 
-    
-
-    
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
       options: {
@@ -353,7 +354,7 @@ module.exports = function (grunt) {
         flatten: false,
         cwd: 'test/',
         src: ['**/*.coffee'],
-        dest: 'test/',
+        dest: '.tmp/test/',
         ext: '.js'
       },
       compileSrc: {
@@ -361,10 +362,40 @@ module.exports = function (grunt) {
         flatten: false,
         cwd: 'app/scripts/',
         src: ['**/*.coffee'],
-        dest: 'app/scripts/',
+        dest: '.tmp/scripts/',
         ext: '.js'
       }
     },
+
+    coffeelint: {
+      app: {
+        files: {
+          src: ['app/**/*.coffee', 'scripts/**/*.coffee']
+        },
+        options: {
+          'no_trailing_whitespace': {
+            'level': 'error'
+          },
+          'max_line_length': {
+            'level': 'ignore'
+          }
+        }
+      },
+      tests: {
+        files: {
+          src: ['test/**/*.coffee']
+        },
+        options: {
+          'no_trailing_whitespace': {
+            'level': 'error'
+          },
+          'max_line_length': {
+            'level': 'ignore'
+          }
+        }
+      }
+    },
+
 
     // Test settings
     karma: {
@@ -427,4 +458,5 @@ module.exports = function (grunt) {
     'build'
   ]);
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-coffeelint');
 };
