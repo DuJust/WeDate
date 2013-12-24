@@ -26,10 +26,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div ng-controller="MainCtrl">
-      <div class="container" ng-view="">
-      </div>
-    </div>
+    <calendar></calendar>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -69,9 +66,7 @@
         <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/directives/calendar.js"></script>
+        <script src="scripts/**/*.js"></script>
         <!-- endbuild -->
 </body>
 </html>

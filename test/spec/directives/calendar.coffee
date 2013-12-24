@@ -3,10 +3,9 @@
 describe 'Directive: calendar', ->
   beforeEach module('weDateApp')
   beforeEach module('views')
-  beforeEach inject ($controller, $rootScope, $compile, $templateCache) ->
+  beforeEach inject ($rootScope, $compile) ->
     @scope = $rootScope.$new()
-    @MainCtrl = $controller 'MainCtrl', {$scope: @scope}
-    @elm = angular.element($templateCache.get('main.html'))
+    @elm = angular.element('<calendar></calendar>')
     $compile(@elm)(@scope)
     @scope.$digest()
   it 'should display', ->

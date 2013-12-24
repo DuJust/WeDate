@@ -19,19 +19,20 @@ module.exports = function(config) {
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/momentjs/moment.js',
-      '**/*.html',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      '.tmp/**/*.js'
+      '.tmp/**/*.js',
+      '.tmp/**/*.html'
     ],
 
     preprocessors: {
       '**/*.coffee': 'coffee',
-      '**/*.html': 'ng-html2js'
+      '.tmp/**/*.html': 'ng-html2js'
     },
 
     ngHtml2JsPreprocessor: {
-      stripPrefix: 'app/views/',
+      stripPrefix: '.tmp/views/',
+      prependPrefix: 'views/',
       // setting this option will create only a single module that contains templates
       // from all the files, so you can load them all with module('foo')
       moduleName: 'views'

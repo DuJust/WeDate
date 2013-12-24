@@ -300,6 +300,12 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
+      },
+      views: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/views',
+        dest: '.tmp/views/',
+        src: '{,*/}*.html'
       }
     },
 
@@ -311,7 +317,8 @@ module.exports = function (grunt) {
       ],
       test: [
         'compass',
-        'copy:styles'
+        'copy:styles',
+        'copy:views'
       ],
       dist: [
         'compass:dist',
@@ -363,6 +370,14 @@ module.exports = function (grunt) {
         cwd: 'app/scripts/',
         src: ['**/*.coffee'],
         dest: '.tmp/scripts/',
+        ext: '.js'
+      },
+      buildSrc: {
+        expand: true,
+        flatten: false,
+        cwd: 'app/scripts/',
+        src: ['**/*.coffee'],
+        dest: 'app/scripts/',
         ext: '.js'
       }
     },
@@ -438,7 +453,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'coffee',
+    'coffee:buildSrc',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
