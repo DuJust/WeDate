@@ -29,11 +29,11 @@ module.exports = function (grunt) {
     watch: {
       js: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all','karma']
+        tasks: ['karma']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
-        tasks: ['newer:jshint:test', 'karma']
+        tasks: ['karma']
       },
       coffee: {
         files: ['{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.coffee'],
