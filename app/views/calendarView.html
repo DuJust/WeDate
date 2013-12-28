@@ -1,3 +1,9 @@
 <div class="calendar">
-  <div class="date" id="{{date.format('M-D')}}" ng-repeat="date in weMonth">{{date.format('ddd')}}</div>
+  <div class="calendar-info">{{weDate.calendar()}}</div>
+  <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
+  <div class="dates" ng-model="weWholeMonth">
+    <div class="week" id="{{week.$index}}" ng-repeat="week in weWholeMonth">
+      <div class="date this-month-{{date.month()==weDate.month()}} weDate-{{date.format()==weDate.format()}}" id="{{date.format('Y-M-D')}}" ng-repeat="date in week">{{date.format('DD')}}</div>
+    </div>
+  </div>
 </div>
