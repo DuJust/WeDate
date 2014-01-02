@@ -1,6 +1,6 @@
 'use strict'
 
-app = angular.module('weDateApp',[])
+app = angular.module('weDateApp',['ngAnimate'])
 
 app.controller 'calendarCtrl', ($scope) ->
   $scope.WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thus', 'Fri', 'Sat']
@@ -18,6 +18,8 @@ app.controller 'calendarCtrl', ($scope) ->
   $scope.pickDate = (date) ->
     $scope.weDate = date
     $scope.update()
+  $scope.showWeek = ()->
+    $scope.weWholeMonth = []
   $scope.init()
 
 app.directive 'calendar', () ->
