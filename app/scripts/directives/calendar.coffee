@@ -5,19 +5,13 @@ app = angular.module('weDateApp',['ngAnimate'])
 app.controller 'calendarCtrl', ($scope) ->
   $scope.WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thus', 'Fri', 'Sat']
 
-  $scope.init = ()->
+  $scope.init = ->
     $scope.weDate = moment(Date())
     $scope.update()
 
-  $scope.update = ()->
+  $scope.update = ->
     delete $scope.weDate.$$hashKey
-    $scope.weWeek = moment().weekOf($scope.weDate)
-    $scope.weMonth = moment().monthOf($scope.weDate)
     $scope.weeks = moment().wholeMonthOf($scope.weDate)
-
-  $scope.addWeek = (number)->
-    $scope.weDate = $scope.weDate.add('w',number)
-    $scope.update()
 
   $scope.pickDate = (date) ->
     $scope.weDate = date
@@ -28,7 +22,7 @@ app.controller 'calendarCtrl', ($scope) ->
 
   $scope.init()
 
-app.directive 'calendar', () ->
+app.directive 'calendar', ->
   {
     restrict: 'E'
     transclude: true

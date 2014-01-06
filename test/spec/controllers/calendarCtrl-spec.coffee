@@ -7,29 +7,23 @@ describe 'Controller: calendarCtrl', ->
     @scope = $rootScope.$new()
     $controller 'calendarCtrl', {$scope: @scope}
 
-  it 'should attach a list of weDate to the scope', ->
-    expect(@scope.weWeek.length).toBe 7
-    expect(@scope.weMonth.length).toBe @scope.weDate.daysInMonth()
+  describe 'update', ->
 
-  it 'should add a week', ->
-    monday = @scope.weWeek[0]
-    @scope.addWeek(1)
-    expect(@scope.weWeek.length).toBe 7
-    expect(@scope.weMonth.length).toBe 31
-    expect(@scope.weWeek[0].format()).toBe monday.clone().add('w', 1).format()
-    expect(@scope.weWeek[6].format()).toBe monday.clone().add('w', 1).add('d', 6).format()
+    beforeEach ->
+      @scope.update()
 
-  it 'should minus a week', ->
-    monday = @scope.weWeek[0]
-    @scope.addWeek(-1)
-    expect(@scope.weWeek.length).toBe 7
-    expect(@scope.weMonth.length).toBe 31
-    expect(@scope.weWeek[0].format()).toBe monday.clone().add('w', -1).format()
-    expect(@scope.weWeek[6].format()).toBe monday.clone().add('w', -1).add('d', 6).format()
+    it 'should attach a whole month', ->
+      today = @scope.weDate
+      firstSunday = today.clone().date(1).day(0)
+      lastSaturday = today.clone().date(today.daysInMonth()).day(6)
+      expect(@scope.weeks[0][0].format()).toBe firstSunday.format()
+      expect(@scope.weeks[4][6].format()).toBe lastSaturday.format()
 
-  it 'should attach a whole month', ->
-    today = @scope.weDate
-    firstSunday = today.clone().date(1).day(0)
-    lastSaturday = today.clone().date(today.daysInMonth()).day(6)
-    expect(@scope.weeks[0][0].format()).toBe firstSunday.format()
-    expect(@scope.weeks[4][6].format()).toBe lastSaturday.format()
+  describe 'show week', ->
+
+    beforeEach ->
+      @scope.showWeek()
+
+    it 'should only show one week', ->
+      expect(@scope.weeks.length).toBe 1
+      expect(@scope.weeks[0].length).toBe 7
