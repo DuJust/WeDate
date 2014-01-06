@@ -372,14 +372,6 @@ module.exports = function (grunt) {
         src: ['**/*.coffee'],
         dest: '.tmp/scripts/',
         ext: '.js'
-      },
-      buildSrc: {
-        expand: true,
-        flatten: false,
-        cwd: 'app/scripts/',
-        src: ['**/*.coffee'],
-        dest: 'app/scripts/',
-        ext: '.js'
       }
     },
 
@@ -454,7 +446,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'coffee:buildSrc',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
