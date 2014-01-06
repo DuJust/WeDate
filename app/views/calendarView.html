@@ -2,8 +2,10 @@
   <div class="calendar-info">{{weDate.calendar()}}</div>
   <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
   <div class="dates">
-    <div class="week animate-repeat" id="{{week.$index}}" ng-repeat="week in weWholeMonth">
-      <div class="date this-month-{{date.month()==weDate.month()}} weDate-{{date.format()==weDate.format()}}" id="{{date.format('Y-M-D')}}" ng-repeat="date in week" ng-click="pickDate(date)">{{date.format('DD')}}</div>
+    <div class="week animate-repeat" id="{{week.$index}}" ng-repeat="week in weeks">
+      <div class="date this-month-{{date.month()==weDate.month()}} weDate-{{date.format()==weDate.format()}}" id="{{date.format('Y-M-D')}}" ng-repeat="date in week" ng-click="pickDate(date)">
+        {{date.format('DD')}}
+      </div>
     </div>
   </div>
   <button ng-click="showWeek()">Click</button>
