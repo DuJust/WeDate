@@ -3,7 +3,7 @@
   <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
   <div class="dates">
     <div class="week animate-repeat" id="{{week.$index}}" ng-repeat="week in weeks">
-      <div class="date this-month-{{date.month()==weDate.month()}} weDate-{{date.format()==weDate.format()}}" id="{{date.format('Y-M-D')}}" ng-repeat="date in week" ng-click="pickDate(date)">
+      <div class="date" ng-repeat="date in week" ng-class="{thisMonth: date.isSame(weDate, 'month'), thisDate: date.isSame(weDate, 'date')}" id="{{date.format('Y-M-D')}}" ng-click="pickDate(date)">
         {{date.format('DD')}}
       </div>
     </div>

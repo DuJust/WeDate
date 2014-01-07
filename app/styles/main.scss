@@ -27,15 +27,15 @@ body {
   text-align: center;
 }
 
-.this-month-true {
-  color: dimgrey;
-}
-
-.this-month-false {
+.date {
   color: darkgrey;
 }
 
-.weDate-true {
+.thisMonth {
+  color: dimgrey;
+}
+
+.thisDate {
   color: red;
 }
 
