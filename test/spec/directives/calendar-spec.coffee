@@ -16,6 +16,3 @@ describe 'Directive: calendar', ->
 
   it 'should display 35 dates', ->
     expect(@elm.find('.date').length).toBe 35
-
-  it 'should display 1 thisDate', ->
-    expect(@elm.find('.thisDate').length).toBe 1

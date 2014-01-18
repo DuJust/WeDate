@@ -1,11 +1,9 @@
 <div class="calendar">
-  <div class="calendar-info">{{weDate.calendar()}}</div>
+  <div class="calendar-info">{{selectedDate.calendar()}}</div>
   <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
   <div class="dates">
     <div class="week animate-repeat" id="{{week.$index}}" ng-repeat="week in weeks">
-      <div class="date" ng-repeat="date in week" ng-class="{thisMonth: date.isSame(weDate, 'month'), thisDate: date.isSame(weDate, 'date')}" id="{{date.format('Y-M-D')}}" ng-click="pickDate(date)">
-        {{date.format('DD')}}
-      </div>
+      <date ng-repeat="date in week" selected-date='selectedDate' date='date'></date>
     </div>
   </div>
   <button ng-click="showWeek()">Click</button>

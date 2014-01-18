@@ -13,7 +13,7 @@ describe 'Controller: calendarCtrl', ->
       @scope.update()
 
     it 'should attach a whole month', ->
-      today = @scope.weDate
+      today = @scope.selectedDate
       firstSunday = today.clone().date(1).day(0)
       lastSaturday = today.clone().date(today.daysInMonth()).day(6)
       expect(@scope.weeks[0][0].format()).toBe firstSunday.format()
