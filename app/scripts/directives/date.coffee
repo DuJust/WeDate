@@ -5,8 +5,9 @@ angular.module('weDateApp').directive 'date', -> {
   require: '^calendar'
   scope: {
     date: '='
+    selectedDate: '='
   }
-  template: '<div class="date" ng-click="selected()">{{date.format("DD")}}</div>'
+  template: '<div class="date" ng-class = "{thisMonth: date.isSame(selectedDate, \'month\'), thisDate: date.isSame(selectedDate, \'day\')}" ng-click="selected()">{{date.format("DD")}}</div>'
   link: (scope, element, attrs, calendar) ->
     scope.selected = ->
       calendar.pickDate(scope.date)
