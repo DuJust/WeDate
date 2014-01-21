@@ -15,6 +15,9 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-coffeelint');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -465,6 +468,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-  grunt.loadNpmTasks('grunt-contrib-coffee');
-  grunt.loadNpmTasks('grunt-coffeelint');
 };
