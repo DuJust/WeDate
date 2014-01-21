@@ -7,7 +7,7 @@ angular.module('weDateApp').directive 'date', -> {
     date: '='
     selectedDate: '='
   }
-  template: '<div class="date" ng-class = "{thisMonth: date.isSame(selectedDate, \'month\'), thisDate: date.isSame(selectedDate, \'day\')}" ng-click="selected()">{{date.format("DD")}}</div>'
+  templateUrl: 'views/date.html'
   link: (scope, element, attrs, calendar) ->
     scope.selected = ->
       calendar.pickDate(scope.date)
