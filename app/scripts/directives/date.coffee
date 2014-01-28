@@ -3,6 +3,7 @@
 angular.module('weDateApp').directive 'date', -> {
   restrict: 'E'
   require: '^calendar'
+  replace: true
   scope: {
     date: '='
     selectedDate: '='

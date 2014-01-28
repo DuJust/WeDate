@@ -1,10 +1,12 @@
 <div class="calendar">
   <div class="calendar-info">{{selectedDate.calendar()}}</div>
-  <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
-  <div class="dates">
-    <div class="week animate-repeat" id="{{week.$index}}" ng-repeat="week in weeks">
+  <div class="weekdays">
+    <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
+  </div>
+  <div class="dates" ng-class="viewtype">
+    <div class="week" id="{{week.$index}}" ng-repeat="week in weeks">
       <date ng-repeat="date in week" selected-date='selectedDate' date='date'></date>
     </div>
   </div>
-  <button ng-click="showWeek()">Click</button>
+  <button ng-click="changeview()">Click</button>
 </div>

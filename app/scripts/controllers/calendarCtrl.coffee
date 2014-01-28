@@ -1,6 +1,7 @@
 'use strict'
 
 angular.module('weDateApp').controller 'calendarCtrl', ($scope) ->
+  $scope.viewtype = 'weekview'
   $scope.WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thus', 'Fri', 'Sat']
 
   $scope.init = ->
@@ -11,8 +12,8 @@ angular.module('weDateApp').controller 'calendarCtrl', ($scope) ->
     delete $scope.selectedDate.$$hashKey
     $scope.weeks = moment().wholeMonthOf($scope.selectedDate)
 
-  $scope.showWeek = ->
-    $scope.weeks = [moment().weekOf($scope.selectedDate)]
+  $scope.changeview = ->
+    $scope.viewtype = if $scope.viewtype == 'weekview' then 'monthview' else 'weekview'
 
   $scope.classOf = (date) ->
     {thisDate : date.isSame($scope.selectedDate, 'date')}

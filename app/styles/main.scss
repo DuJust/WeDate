@@ -43,29 +43,24 @@ body {
   color: red;
 }
 
-.animate-repeat {
+.week {
   line-height:40px;
   list-style:none;
   box-sizing:border-box;
 }
 
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter,
-.animate-repeat.ng-leave {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+.dates {
+  overflow:hidden;
+  -webkit-transition:all ease-in 0.2s;
+  transition:all ease-in 0.2s;
 }
 
-.animate-repeat.ng-leave.ng-leave-active,
-.animate-repeat.ng-move,
-.animate-repeat.ng-enter {
-  opacity:0;
-  max-height:0;
+.dates.monthview,
+.dates.weekview.weekview-add-active{
+  height:43px * 5;
 }
 
-.animate-repeat.ng-leave,
-.animate-repeat.ng-move.ng-move-active,
-.animate-repeat.ng-enter.ng-enter-active {
-  opacity:1;
-  max-height:40px;
+.dates.weekview,
+.dates.monthview.monthview-add-active{
+  height:43px;
 }
