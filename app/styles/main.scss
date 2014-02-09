@@ -49,18 +49,18 @@ body {
   box-sizing:border-box;
 }
 
-.dates {
+.calendar-container {
   overflow:hidden;
   -webkit-transition:all ease-in 0.2s;
   transition:all ease-in 0.2s;
 }
 
-.dates.monthview,
-.dates.weekview.weekview-add-active{
+.calendar-container.monthview,
+.calendar-container.weekview.weekview-add-active{
   height:43px * 5;
 }
 
-.dates.weekview,
-.dates.monthview.monthview-add-active{
+.calendar-container.weekview,
+.calendar-container.monthview.monthview-add-active{
   height:43px;
 }

@@ -3,9 +3,11 @@
   <div class="weekdays">
     <div class="weekday" id="{{day}}" ng-repeat="day in WEEKDAYS">{{day}}</div>
   </div>
-  <div class="dates" ng-class="viewtype">
-    <div class="week" id="{{week.$index}}" ng-repeat="week in weeks">
-      <date ng-repeat="date in week" selected-date='selectedDate' date='date'></date>
+  <div class="calendar-container" ng-class="viewtype">
+    <div class="dates">
+      <div class="week" id="{{week.$index}}" ng-repeat="week in weeks">
+        <date ng-repeat="date in week" selected-date='selectedDate' date='date'></date>
+      </div>
     </div>
   </div>
   <button ng-click="changeview()">Click</button>
