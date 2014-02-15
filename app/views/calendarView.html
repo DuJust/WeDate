@@ -5,7 +5,7 @@
   </div>
   <div class="calendar-container" ng-class="viewtype">
     <div class="dates">
-      <div class="week" id="{{week.$index}}" ng-repeat="week in weeks">
+      <div class="week" id="{{$index}}" ng-repeat="week in weeks">
         <date ng-repeat="date in week" selected-date='selectedDate' date='date'></date>
       </div>
     </div>
