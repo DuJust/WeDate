@@ -6,3 +6,7 @@ app/bower_components
 .idea/
 test/spec/**/*.js
 app/scripts/**/*.js
+platforms/
+merges/
+plugins/
+www/

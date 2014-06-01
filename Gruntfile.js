@@ -17,6 +17,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-coffeelint');
+  grunt.loadNpmTasks('grunt-shell');
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -25,7 +26,18 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: 'dist'
+      dist: 'dist',
+      www: 'www'
+    },
+
+    // Grunt shell init
+    shell: {                                // Task
+        phonegap: {                      // Target
+          options: {                      // Options
+            stderr: false
+          },
+          command: 'phonegap run android'
+        }
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -133,7 +145,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      tmp: '.tmp'
     },
 
     // Add vendor prefixed styles
@@ -309,6 +322,16 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/views',
         dest: '.tmp/views/',
         src: '{,*/}*.html'
+      },
+      www: {
+        files: [{
+          expand: true,
+          cwd: '<%= yeoman.dist %>',
+          dest: '<%= yeoman.www %>',
+          src: [
+            '{,**/}*'
+          ]
+        }]
       }
     },
 
@@ -449,17 +472,25 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'coffee',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
     'concat',
     'ngmin',
     'copy:dist',
-    'cdnify',
+//    'cdnify',
     'cssmin',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'clean:tmp'
+  ]);
+
+  grunt.registerTask('build-app', [
+    'build',
+    'copy:www',
+    'shell:phonegap:android'
   ]);
 
   grunt.registerTask('default', [
